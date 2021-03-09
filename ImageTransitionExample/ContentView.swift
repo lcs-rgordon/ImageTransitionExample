@@ -41,7 +41,6 @@ struct ContentView: View {
                     
                     // Change the image and fade in
                     // Make sure we don't go past the end of the array
-                    lastImage = currentImage
                     if currentImage < images.count - 1 {
                         currentImage += 1
                     } else {
@@ -59,14 +58,19 @@ struct ContentView: View {
                 
                 withAnimation(Animation.easeOut(duration: 3.0)) {
                     
-                    // This timer first twice as often as the other one
-                    // We only want to fade the image out when it been shown for a while
-                    // This occurs when the current image is different than the last one
+                    // This timer fires twice as often as the other one
+                    // However, we only want to fade the image out when it been shown for three seconds
+                    // How to do this?
+                    // We can look for when the current image is NOT the same as the prior image
+                    // When this is true, the image has already been shown
                     if currentImage != lastImage {
                         
                         // Fade the image out
                         print("fading out, last image is \(lastImage) and current image is \(currentImage)")
                         currentOpacity = 0.0
+                        
+                        // Update what image was just shown
+                        lastImage = currentImage
 
                     }
 
