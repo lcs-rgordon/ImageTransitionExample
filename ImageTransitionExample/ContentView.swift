@@ -15,7 +15,7 @@ struct ContentView: View {
     @State private var images = ["Piper-Kitchen", "Piper-Backyard", "Piper-Lap"]
     
     // Initialize a timer that will fire to fade the image out in 3 seconds
-    let changeAndFadeIn = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    let fadeOut = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     
     // The opacity of the image
     @State private var currentOpacity = 1.0
@@ -26,13 +26,13 @@ struct ContentView: View {
             .scaledToFit()
             .opacity(currentOpacity)
             .animation(Animation.easeOut(duration: 3.0))
-            .onReceive(changeAndFadeIn) { input in
+            .onReceive(fadeOut) { input in
                 
                 // Fade the image out
                 currentOpacity = 0.0
                 
                 // Stop the timer from continuing to fire
-                changeAndFadeIn.upstream.connect().cancel()
+                fadeOut.upstream.connect().cancel()
                 
             }
 
