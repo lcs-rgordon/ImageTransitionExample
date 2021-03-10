@@ -12,7 +12,7 @@ struct ContentView: View {
     // MARK: Stored Properties
     
     // The list of images to show
-    @State private var images = ["Piper-Kitchen", "Piper-Backyard", "Piper-In-Lap"]
+    @State private var images = ["Piper-Backyard", "Piper-Kitchen", "Piper-In-Lap"]
 
     // The last image that we showed
     @State private var lastImage = -1
